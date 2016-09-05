@@ -27,6 +27,7 @@ static const CGFloat kTopSpaceMarginFraction = 0.333f;
 // cancelButton's shadow height as the ratio to the cancelButton's height
 static const CGFloat kCancelButtonShadowHeightRatio = 0.333f;
 
+static __weak AHKActionSheet* lastActionSheet;
 
 /// Used for storing button configuration.
 @interface AHKActionSheetItem : NSObject
@@ -261,6 +262,10 @@ static const CGFloat kCancelButtonShadowHeightRatio = 0.333f;
 
 - (void)show
 {
+    if(lastActionSheet){
+        [lastActionSheet dismissAnimated:NO];
+    }
+    lastActionSheet = self;
     NSAssert([self.items count] > 0, @"Please add some buttons before calling -show.");
 
     if ([self isVisible]) {
