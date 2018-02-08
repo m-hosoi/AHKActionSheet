@@ -266,7 +266,6 @@ static __weak AHKActionSheet* lastActionSheet;
         [lastActionSheet dismissAnimated:NO];
     }
     lastActionSheet = self;
-    NSAssert([self.items count] > 0, @"Please add some buttons before calling -show.");
 
     if ([self isVisible]) {
         return;
